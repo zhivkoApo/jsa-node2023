@@ -133,3 +133,17 @@ if (prvUchenik.ocenka > vtorUchenik.ocenka) {
 prvUchenik.ocenka > vtorUchenik.ocenka ?
     console.log('asd') : prvUchenik.ocenka < vtorUchenik.ocenka ?
         console.log('asd1') : console.log('asd2');
+
+
+const niza1 = ["book1","book2","book3"];
+
+for(let i=0; i<niza1.length;++i){
+    console.log(niza1[i]);
+}
+
+let c = 0;
+console.log(c);
+c++; // c = c + 1; // c = 1;
+console.log(c);
+console.log(c++);
+console.log(++c);
