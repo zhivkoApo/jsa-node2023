@@ -1,0 +1,1 @@
+[{"ime":"Zlate Zlatevski","telefon":555666},{"ime":"Pero Perovski","telefon":534646},{"ime":"Marko Markovski","telefon":524626}]
