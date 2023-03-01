@@ -58,7 +58,7 @@ const fileRead = (filename) => {
                 citiesWithTotalAverage[s.grad] = s.prosek;
             }
 
-            citiesWithTotalAverage[s.grad] = citiesWithTotalAverage[s.grad] + s.prosek;
+            citiesWithTotalAverage[s.grad] = (citiesWithTotalAverage[s.grad] + s.prosek) / 2;
         }
 
         console.log(citiesWithTotalAverage);
