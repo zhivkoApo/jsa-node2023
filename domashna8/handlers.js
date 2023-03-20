@@ -42,7 +42,7 @@ const delete_student = async (req, res) => {
         });
         await util.fileWrite(DATA_SOURCE, JSON.stringify(data));
         res.send(' Successfully deleted student with id: ' + req.params.id);
-        res.send('ok');
+        // res.send('ok');
     } catch (err) {
         res.send(err);
     }
