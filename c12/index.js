@@ -7,7 +7,7 @@ mongoose.connect(connectionString);
 const Users = mongoose.model(
     'users',
     {
-        _id: String,
+        _id: mongoose.Types.ObjectId,
         name: String,
         last_name: String,
         date_of_birth: String    
@@ -36,14 +36,14 @@ const Users = mongoose.model(
 
 // Create new data in mongodb database
 
-// let newUser = new Users({
-//     _id: new mongoose.Types.ObjectId(),
-//     name: "Pero",
-//     last_name: "Perovski",
-//     date_of_birth: new Date("1990-02-01")
-// });
+let newUser = new Users({
+    _id: new mongoose.Types.ObjectId(),
+    name: "Pero",
+    last_name: "Perovski",
+    date_of_birth: new Date("1990-02-01")
+});
 
-// newUser.save();
+newUser.save();
 
 // Update existing data in mongodb database
 
@@ -74,3 +74,10 @@ const Users = mongoose.model(
 //     }).catch(err => {
 //         console.log(err);
 //     });
+
+Users.updateOne({_id: '6421d81ab87db8d4d5ecb81f'}, {last_name: "Apostoloski"})
+    .then(user => {
+        console.log(user);
+    }).catch(err => {
+        console.log(err);
+    });
