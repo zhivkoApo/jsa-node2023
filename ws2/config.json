@@ -1,0 +1,10 @@
+{
+    "settings": {
+        "server_port": 10000,
+        "jwt_secret": "zhivko123",
+        "db_url": "cluster0.mcazydz.mongodb",
+        "db_username": "zhivko",
+        "db_password": "xx5pAIg0QFcszlrS",
+        "db_name": "Movies"
+    }
+}
