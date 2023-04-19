@@ -10,3 +10,5 @@
 /ws2/.env
 /ws3/node_modules
 /ws3/.env
+/ws5/node_modules
+/ws5/.env
