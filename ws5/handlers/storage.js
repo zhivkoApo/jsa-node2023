@@ -1,6 +1,8 @@
 const strings = require('../pkg/strings');
+const users = require('../pkg/users');
+const fs = require('fs');
 
-const upload = async (req, res) => {
+const uploadProfilePicture = async (req, res) => {
     try {
         let fileTypes = ['image/png', 'image/jpg', 'image/pjpeg', 'image/jpeg', 'image/gif'];
         let maxFileSize = 5 * 1024 * 1024;
@@ -13,19 +15,38 @@ const upload = async (req, res) => {
         }
 
         let newFileName = `${strings.random(20)}_${req.files.slika.name}`;
-        await req.files.slika.mv(`${__dirname}/../uploads/${newFileName}`); // ws5/uploads/432fhasdABV_slika1.jpg
+        let newFilePath = `${__dirname}/../uploads/${newFileName}`;
+        await req.files.slika.mv(newFilePath);
+        await users.uploadProfileImage(req.params.user_id, newFilePath);
         res.status(201).send({filename: newFileName});
-        // res.status(200).send('OK');
     } catch (err) {
         console.log(err);
         return res.status(500).send('ISE!');
     }
 };
 
-const download = async (req, res) => {
+const downloadProfilePicture = async (req, res) => {
     try {
-        let filePath = `${__dirname}/../uploads/${req.params.file}`;
-        res.download(filePath, req.params.file.split('_')[1]);
+        if (!req.params.id) {
+            return res.status(400).send('Bad request');
+        }
+        let user = await users.getUserInfo(req.params.id);
+
+        if (!user) {
+            return res.status(401).send('User not found!');
+        }
+
+        if (!user.profile_img) {
+            return res.status(401).send('User with id ' + req.params.id + ' does not have a profile picture.');
+        }
+
+        let filePath = user.profile_img;
+        // check if file exists
+        if (fs.existsSync(filePath)) {
+            return res.status(200).download(filePath, user.profile_img.split('_')[1]);
+        }
+
+        return res.status(401).send('Profile picture for user with id ' + user._id + ' is not found on the server.');
     } catch (err) {
         console.log(err);
         return res.status(500).send('ISE!');
@@ -33,6 +54,8 @@ const download = async (req, res) => {
 };
 
 module.exports = {
-    upload,
-    download
+    // upload,
+    // download
+    uploadProfilePicture,
+    downloadProfilePicture
 };
