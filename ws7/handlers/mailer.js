@@ -1,8 +1,9 @@
+const mailer = require('../pkg/mailer');
 
 const sendWelcome = async (req, res) => {
     try {
         // prati mejl preku mail service
-        mailer.send('WELCOME', req.body);
+        await mailer.send('WELCOME', req.body);
         res.send({ success: true, status: 'OK' });
     } catch (err) {
         console.log(err);
@@ -12,7 +13,7 @@ const sendWelcome = async (req, res) => {
 
 const sendResetPassword = async (req, res) => {
     try {
-        mailer.send('RESET_PASSWORD', req.body);
+        await mailer.send('RESET_PASSWORD', req.body);
         res.send({ success: true, status: 'OK' });
     } catch (err) {
         console.log(err);
