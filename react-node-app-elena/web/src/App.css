@@ -1,0 +1,11 @@
+body {
+  margin: 20px;
+  background: linear-gradient(to right, #59c173, #a17fe0, #5d26c1);
+  font-family: sans-serif;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
